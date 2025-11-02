@@ -32,46 +32,15 @@
             width: 380px; padding: 25px; background-color: #282a36;
             border-right: 2px solid #44475a; overflow-y: auto; flex-shrink: 0; display: flex; flex-direction: column;
         }
-
-        /* --- 추가된 헤더 스타일 --- */
-        .panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #44475a;
-        }
-        .panel-header h3 {
-            margin: 0;
-            color: #f8f8f2;
-            font-size: 1.2em;
-        }
-        .icon-btn {
-            background: #44475a;
-            border: 1px solid #555869;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-            text-decoration: none;
-            color: #fff;
-            flex-shrink: 0;
-        }
-        .icon-btn:hover {
-            border-color: #bd93f9;
-            transform: scale(1.1);
-        }
-        /* ------------------------- */
-
+        
+        /* --- 헤더 --- */
+        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #44475a; }
+        .panel-header h3 { margin: 0; color: #f8f8f2; font-size: 1.2em; }
+        .icon-btn { background: #44475a; border: 1px solid #555869; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.2rem; transition: all 0.3s; text-decoration: none; color: #fff; flex-shrink: 0; }
+        .icon-btn:hover { border-color: #bd93f9; transform: scale(1.1); }
+        
         .panel-section { background-color: #313442; padding: 20px; border-radius: 8px; margin-bottom: 25px; }
         .panel-section h3 { margin-top: 0; color: #f8f8f2; border-bottom: 1px solid #44475a; padding-bottom: 10px; }
-
         .color-control { margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
         .color-control .info { flex-grow: 1; }
         .color-control .info label { font-family: 'Ridibatang', sans-serif; font-size: 16px; color: #f8f8f2; font-weight: bold; }
@@ -79,7 +48,6 @@
         .color-control input[type="color"] { -webkit-appearance: none; width: 50px; height: 30px; border: none; padding: 0; background-color: transparent; cursor: pointer; flex-shrink: 0; margin-left: 10px; }
         .color-control input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
         .color-control input[type="color"]::-webkit-color-swatch { border: 1px solid #6272a4; border-radius: 4px; }
-
         #json-input { width: 100%; height: 270px; background-color: #22242d; color: #f1fa8c; border: 1px solid #44475a; border-radius: 4px; padding: 10px; font-family: monospace; font-size: 14px; resize: vertical; }
         .button-group { display: flex; gap: 10px; margin-top: 15px; }
         .button-group button, .preset-control button, #import-json-btn { flex-grow: 1; padding: 10px; border: 1px solid #555869; border-radius: 5px; background-color: #44475a; color: #f8f8f2; cursor: pointer; font-weight: bold; transition: background-color 0.2s; font-family: 'Ridibatang', sans-serif; }
@@ -89,36 +57,75 @@
         .preset-control { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-bottom: 10px; }
         .preset-control input, .preset-control select { width: 100%; padding: 8px; background-color: #22242d; border: 1px solid #44475a; color: #f8f8f2; border-radius: 4px; font-family: 'Ridibatang', sans-serif; }
         
-        .preview-container { flex-grow: 1; display: flex; width: 100%; height: 100%; }
-        .col-chars { width: 80px; background-color: var(--bgcolor); padding-top: 10px; display: flex; flex-direction: column; align-items: center; gap: 15px; border-right: 1px solid var(--darkBorderc); flex-shrink: 0; }
+        .preview-container { flex-grow: 1; display: flex; width: 100%; height: 100%; position: relative; }
+        
+        .col-chars, .col-menu, .col-chat { transition: transform 0.3s ease-in-out; }
+        
+        .col-chars { width: 80px; background-color: var(--bgcolor); padding-top: 10px; display: flex; flex-direction: column; align-items: center; gap: 15px; border-right: 0px solid var(--darkBorderc); flex-shrink: 0; }
         .col-chars .menu-icon { width: 50px; height: 50px; border-radius: 15px; background-color: var(--textcolor2); color: var(--textcolor2); display: grid; place-items: center; font-size: 24px; cursor: pointer; }
         .col-chars .char-avatar { width: 50px; height: 50px; border-radius: 50%; background-color: #808080; color: #FFFFFF; border: 1px solid transparent; cursor: pointer; display: grid; place-items: center; font-size: 28px; font-weight: bold; }
-        .color-textcolor { color: var(--textcolor); }
-        .color-textcolor2 { color: var(--textcolor2); }
         .col-chars .char-avatar.active { border: 0px solid transparent }
         .col-chars .char-avatar.add-char { margin-top: auto; margin-bottom: 15px; background-color: transparent; border-radius: 50%; border-style: solid; border-color: var(--textcolor2); color: #cccccc; }
-        .col-menu { width: 320px; background-color: var(--darkbg); display: flex; flex-direction: column; border-right: 1px solid var(--darkBorderc); flex-shrink: 0; padding: 15px; color: var(--textcolor); }
+        
+        .col-menu { width: 320px; background-color: var(--darkbg); display: flex; flex-direction: column; border-right: 0px solid var(--darkBorderc); flex-shrink: 0; padding: 15px; color: var(--textcolor); }
+		.char-font-color { color: var(--textcolor2); }
         .menu-tabs { display: flex; border-bottom: 1px solid var(--selected); }
-        .menu-tabs button { flex: 1; padding: 10px; background: none; border: none; color: var(--textcolor); opacity: 0.7; font-size: 16px; font-family: 'Ridibatang', sans-serif; cursor: pointer; }
-        .menu-tabs button.active { opacity: 1; font-weight: bold; }
+        .menu-tabs button { flex: 1; padding: 10px; background: none; border: none; color: var(--textcolor); font-size: 16px; font-family: 'Ridibatang', sans-serif; cursor: pointer; }
+        .menu-tabs button.active { font-weight: bold; }
         .new-chat-btn { width: 100%; padding: 12px; margin: 15px 0; border-radius: 8px; background-color: var(--darkbutton); border: 1px solid var(--draculared); color: var(--textcolor); font-size: 16px; cursor: pointer; }
-        .chat-list-item { padding: 12px; border-radius: 8px; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center; color: var(--textcolor); transition: background-color 0.2s; }
+        .chat-list-item { padding: 12px; border-radius: 8px; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center; color: var(--textcolor); transition: background-color 0.2s; cursor: pointer;}
         .new-chat-btn:hover, .menu-icon:hover, .chat-list-item:hover { background-color: var(--selected); }
         .chat-list-item.active { background-color: var(--selected); }
         .menu-settings { margin-top: auto; padding-top: 15px; border-top: 1px solid var(--selected); color: var(--textcolor);}
         .setting-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .setting-item input[type=checkbox] { accent-color: var(--darkbutton); }
-        .col-chat { flex-grow: 1; display: flex; flex-direction: column; background-color: #B2C7D9; }
+        
+        .col-chat { flex-grow: 1; display: flex; flex-direction: column; background-color: #000000; }
         .message-list-static { flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; }
         .message-static { display: flex; margin-bottom: 15px; max-width: 80%; }
         .message-static .msg-bubble { padding: 10px 15px; border-radius: 12px; line-height: 1.5; font-family: sans-serif; }
         .message-static.character { align-self: flex-start; }
-        .message-static.character .msg-bubble { background-color: #FFFFFF; color: #000000; }
+        .message-static.character .msg-bubble { background-color: #E9E9EB; color: #000000; }
         .message-static.user { align-self: flex-end; }
-        .message-static.user .msg-bubble { background-color: #FEE500; color: #000000; }
-        .chat-input-area-themed { padding: 15px 20px; background-color: var(--bgcolor); border-top: 1px solid var(--darkBorderc); display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+        .message-static.user .msg-bubble { background-color: #1290FE; color: #ffffff; }
+        .chat-input-area-themed { padding: 15px 20px; background-color: var(--bgcolor); border-top: 0px solid var(--darkBorderc); display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
         .chat-input-area-themed input { flex-grow: 1; padding: 12px; border: none; border-radius: 8px; background-color: var(--bgcolor); color: var(--textcolor); border: 1px solid var(--darkBorderc); }
         .chat-input-area-themed button { background-color: transparent; border: none; font-size: 24px; color: var(--draculared); cursor: pointer; padding: 0 10px; }
+
+        .color-textcolor, .color-textcolor2 { color: inherit; } /* Remove conflicting styles */
+
+        /* --- 모바일 반응형 스타일 --- */
+        .mobile-back-btn, .mobile-editor-toggle { display: none; }
+
+        @media (max-width: 768px) {
+            .theme-controller-panel {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                transform: translateX(-100%); transition: transform 0.3s ease-in-out;
+                z-index: 100; border-right: none;
+            }
+            .theme-controller-panel.open { transform: translateX(0); }
+
+            .preview-container { width: 100%; flex-shrink: 0; overflow: hidden; }
+            .col-chars, .col-menu, .col-chat {
+                position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+                visibility: hidden; opacity: 0; transition: opacity 0.2s, visibility 0.2s;
+            }
+            .col-menu { visibility: visible; opacity: 1; } /* 기본 화면 */
+            
+            .mobile-back-btn {
+                display: block; position: absolute; top: 15px; left: 15px; z-index: 5;
+                background: rgba(0,0,0,0.2); border: none; border-radius: 50%;
+                width: 40px; height: 40px; color: white; font-size: 24px; cursor: pointer;
+            }
+            .col-chat .mobile-back-btn { color: #333; }
+
+            .mobile-editor-toggle {
+                display: grid; place-items: center; position: fixed; bottom: 20px; right: 20px;
+                width: 50px; height: 50px; background: #282a36; border: 1px solid #44475a;
+                border-radius: 50%; color: #f8f8f2; font-size: 24px; cursor: pointer;
+                z-index: 101; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            }
+        }
     </style>
 </head>
 <body>
@@ -135,29 +142,19 @@
         </aside>
 
         <div class="preview-container">
-            <aside class="col-chars"><div class="menu-icon"><font color=#ffffff><span>≡</span></font></div><div class="char-avatar active">?</div><div class="char-avatar">?</div><div class="char-avatar add-char">+</div></aside>
-            <main class="col-menu"><div class="menu-tabs"><button class="active">챗</button><button><div class="color-textcolor2">캐릭터</div></button></div><button class="new-chat-btn"><div class="color-textcolor">새 채팅</div></button><div class="chat-list"><div class="chat-list-item active"><span>### 001 채팅방</span></div><div class="chat-list-item"><span>### 000 채팅방</span></div></div><div class="menu-settings"><div class="setting-item"><span>탈옥 토글</span><input type="checkbox"></div><div class="setting-item"><span>탈옥 강화</span><input type="checkbox"></div></div></main>
-            <section class="col-chat"><div class="message-list-static"><div class="message-static character"><div class="msg-bubble">채팅창을 꾸미고 싶다면,<br>달글 첫 댓글 천사 펠시의 집 이용하기<br></div></div><div class="message-static user"><div class="msg-bubble">&lt;System&gt; 이미 쓰러진 펠시입니다.</div></div></div><footer class="chat-input-area-themed"><input type="text" placeholder="{{user}}의 테마 기다리는 중..."><button><font color=#ABABAB>➤</button></footer></section>
+            <aside class="col-chars"><button class="mobile-back-btn">←</button><div class="menu-icon"><span><font color=#ffffff>≡</font></span></div><div class="char-avatar active">?</div><div class="char-avatar">?</div><div class="char-avatar add-char">+</div></aside>
+            <main class="col-menu"><div class="menu-tabs"><button class="active">챗</button><button><div  class="char-font-color">캐릭터</div></div></button><button class="new-chat-btn">새 채팅</button><div class="chat-list"><div class="chat-list-item active"><span>### 001 채팅방</span></div><div class="chat-list-item"><span>### 000 채팅방</span></div></div><div class="menu-settings"><div class="setting-item"><span>탈옥 토글</span><input type="checkbox"></div><div class="setting-item"><span>탈옥 강화</span><input type="checkbox"></div></div></main>
+            <section class="col-chat"><button class="mobile-back-btn">←</button><div class="message-list-static"><div class="message-static character"><div class="msg-bubble">채팅창을 꾸미고 싶다면,<br>달글 첫 댓글 천사 펠시의 집 이용하기</div></div><div class="message-static user"><div class="msg-bubble">&lt;System&gt; 이미 쓰러진 펠시입니다.</div></div></div><footer class="chat-input-area-themed"><input type="text" placeholder="{{user}}의 테마 기다리는 중..."><button><font color=#ABABAB>➤</font></button></footer></section>
         </div>
     </div>
+    <button class="mobile-editor-toggle">⚙️</button>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- 기존 스크립트 (수정 없음) ---
             const themeProperties = ['bgcolor', 'darkbg', 'borderc', 'selected', 'draculared', 'textcolor', 'textcolor2', 'darkBorderc', 'darkbutton'];
             const themeDescriptions = { 'bgcolor': 'Background', 'darkbg': 'Dark Background', 'borderc': 'Color 1', 'selected': 'Color 2', 'draculared': 'Color 3', 'textcolor': 'Text Color', 'textcolor2': 'Text Color 2', 'darkBorderc': 'Color 4', 'darkbutton': 'Color 5' };
-            const visualEditor = document.getElementById('visual-editor');
-            const jsonInput = document.getElementById('json-input');
-            const root = document.documentElement;
-            const applyJsonBtn = document.getElementById('apply-json-btn');
-            const copyJsonBtn = document.getElementById('copy-json-btn');
-            const exportJsonBtn = document.getElementById('export-json-btn');
-            const importJsonBtn = document.getElementById('import-json-btn');
-            const jsonFileInput = document.getElementById('json-file-input');
-            const savePresetBtn = document.getElementById('save-preset-btn');
-            const deletePresetBtn = document.getElementById('delete-preset-btn');
-            const presetNameInput = document.getElementById('preset-name');
-            const presetSelect = document.getElementById('preset-select');
-
+            const visualEditor = document.getElementById('visual-editor'); const jsonInput = document.getElementById('json-input'); const root = document.documentElement; const applyJsonBtn = document.getElementById('apply-json-btn'); const copyJsonBtn = document.getElementById('copy-json-btn'); const exportJsonBtn = document.getElementById('export-json-btn'); const importJsonBtn = document.getElementById('import-json-btn'); const jsonFileInput = document.getElementById('json-file-input'); const savePresetBtn = document.getElementById('save-preset-btn'); const deletePresetBtn = document.getElementById('delete-preset-btn'); const presetNameInput = document.getElementById('preset-name'); const presetSelect = document.getElementById('preset-select');
             function initializeVisualEditor() { visualEditor.innerHTML = ''; themeProperties.forEach(prop => { const value = getComputedStyle(root).getPropertyValue(`--${prop}`).trim(); const control = document.createElement('div'); control.className = 'color-control'; const infoDiv = document.createElement('div'); infoDiv.className = 'info'; const label = document.createElement('label'); label.textContent = themeDescriptions[prop] || prop; const description = document.createElement('div'); description.className = 'description'; description.textContent = `(${prop})`; infoDiv.appendChild(label); infoDiv.appendChild(description); const input = document.createElement('input'); input.type = 'color'; input.dataset.variable = `--${prop}`; input.value = value; input.addEventListener('input', handleColorInputChange); control.appendChild(infoDiv); control.appendChild(input); visualEditor.appendChild(control); }); }
             function handleColorInputChange(event) { const { variable } = event.target.dataset; const newColor = event.target.value; root.style.setProperty(variable, newColor); updateJsonFromCss(); }
             function getCurrentThemeAsObject() { const theme = {}; themeProperties.forEach(prop => { theme[prop] = getComputedStyle(root).getPropertyValue(`--${prop}`).trim(); }); return theme; }
@@ -166,19 +163,36 @@
             function getPresets() { return JSON.parse(localStorage.getItem('risuai_themes') || '{}'); }
             function savePresets(presets) { localStorage.setItem('risuai_themes', JSON.stringify(presets)); }
             function loadPresetsIntoSelect() { const presets = getPresets(); presetSelect.innerHTML = '<option value="">프리셋 불러오기</option>'; for (const name in presets) { const option = document.createElement('option'); option.value = name; option.textContent = name; presetSelect.appendChild(option); } }
-            
-            applyJsonBtn.addEventListener('click', applyThemeFromJson);
-            copyJsonBtn.addEventListener('click', () => { jsonInput.select(); navigator.clipboard.writeText(jsonInput.value).then(() => alert('JSON 코드가 클립보드에 복사되었습니다.')).catch(err => alert('복사 실패: ' + err)); });
-            exportJsonBtn.addEventListener('click', () => { const blob = new Blob([jsonInput.value], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'light_theme.json'; a.click(); URL.revokeObjectURL(url); });
-            importJsonBtn.addEventListener('click', () => jsonFileInput.click());
-            jsonFileInput.addEventListener('change', (event) => { if (!event.target.files.length) return; const file = event.target.files[0]; const reader = new FileReader(); reader.onload = (e) => { jsonInput.value = e.target.result; applyThemeFromJson(); alert(`'${file.name}' 파일을 불러왔습니다.`); }; reader.onerror = () => alert('파일을 읽는 중 오류가 발생했습니다.'); reader.readAsText(file); event.target.value = null; });
-            savePresetBtn.addEventListener('click', () => { const name = presetNameInput.value.trim(); if (!name) { alert('프리셋 이름을 입력해주세요.'); return; } const presets = getPresets(); presets[name] = getCurrentThemeAsObject(); savePresets(presets); loadPresetsIntoSelect(); presetSelect.value = name; alert(`'${name}' 프리셋이 저장되었습니다.`); });
-            deletePresetBtn.addEventListener('click', () => { const name = presetSelect.value; if (!name) { alert('삭제할 프리셋을 선택해주세요.'); return; } if (confirm(`'${name}' 프리셋을 정말 삭제하시겠습니까?`)) { const presets = getPresets(); delete presets[name]; savePresets(presets); loadPresetsIntoSelect(); alert(`'${name}' 프리셋이 삭제되었습니다.`); } });
-            presetSelect.addEventListener('change', (event) => { const name = event.target.value; if (!name) return; const presets = getPresets(); const theme = presets[name]; if (theme) { theme.type = "light"; jsonInput.value = JSON.stringify(theme, null, 2); applyThemeFromJson(); } });
-            
+            applyJsonBtn.addEventListener('click', applyThemeFromJson); copyJsonBtn.addEventListener('click', () => { jsonInput.select(); navigator.clipboard.writeText(jsonInput.value).then(() => alert('JSON 코드가 클립보드에 복사되었습니다.')).catch(err => alert('복사 실패: ' + err)); }); exportJsonBtn.addEventListener('click', () => { const blob = new Blob([jsonInput.value], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'light_theme.json'; a.click(); URL.revokeObjectURL(url); }); importJsonBtn.addEventListener('click', () => jsonFileInput.click()); jsonFileInput.addEventListener('change', (event) => { if (!event.target.files.length) return; const file = event.target.files[0]; const reader = new FileReader(); reader.onload = (e) => { jsonInput.value = e.target.result; applyThemeFromJson(); alert(`'${file.name}' 파일을 불러왔습니다.`); }; reader.onerror = () => alert('파일을 읽는 중 오류가 발생했습니다.'); reader.readAsText(file); event.target.value = null; }); savePresetBtn.addEventListener('click', () => { const name = presetNameInput.value.trim(); if (!name) { alert('프리셋 이름을 입력해주세요.'); return; } const presets = getPresets(); presets[name] = getCurrentThemeAsObject(); savePresets(presets); loadPresetsIntoSelect(); presetSelect.value = name; alert(`'${name}' 프리셋이 저장되었습니다.`); }); deletePresetBtn.addEventListener('click', () => { const name = presetSelect.value; if (!name) { alert('삭제할 프리셋을 선택해주세요.'); return; } if (confirm(`'${name}' 프리셋을 정말 삭제하시겠습니까?`)) { const presets = getPresets(); delete presets[name]; savePresets(presets); loadPresetsIntoSelect(); alert(`'${name}' 프리셋이 삭제되었습니다.`); } }); presetSelect.addEventListener('change', (event) => { const name = event.target.value; if (!name) return; const presets = getPresets(); const theme = presets[name]; if (theme) { theme.type = "light"; jsonInput.value = JSON.stringify(theme, null, 2); applyThemeFromJson(); } });
             initializeVisualEditor();
             jsonInput.value = JSON.stringify({ "bgcolor":"#abc5de","darkbg":"#c1d2e2","borderc":"#487094","selected":"#eef2f2","draculared":"#3a74af","textcolor":"#477094","textcolor2":"#637c97","darkBorderc":"#7884a1","darkbutton":"#c1d2e2","type": "light" }, null, 2);
             loadPresetsIntoSelect();
+
+            // --- 모바일 전용 스크립트 ---
+            const editorPanel = document.querySelector('.theme-controller-panel');
+            const editorToggle = document.querySelector('.mobile-editor-toggle');
+            const colChars = document.querySelector('.col-chars');
+            const colMenu = document.querySelector('.col-menu');
+            const colChat = document.querySelector('.col-chat');
+            const menuIcon = document.querySelector('.menu-icon');
+            const chatItems = document.querySelectorAll('.chat-list-item');
+            const backBtns = document.querySelectorAll('.mobile-back-btn');
+
+            function showColumn(columnToShow) {
+                [colChars, colMenu, colChat].forEach(col => {
+                    col.style.visibility = 'hidden';
+                    col.style.opacity = '0';
+                });
+                columnToShow.style.visibility = 'visible';
+                columnToShow.style.opacity = '1';
+            }
+
+            if (window.innerWidth <= 768) {
+                editorToggle.addEventListener('click', () => editorPanel.classList.toggle('open'));
+                menuIcon.addEventListener('click', () => showColumn(colChars));
+                chatItems.forEach(item => item.addEventListener('click', () => showColumn(colChat)));
+                backBtns.forEach(btn => btn.addEventListener('click', () => showColumn(colMenu)));
+            }
         });
     </script>
 </body>
