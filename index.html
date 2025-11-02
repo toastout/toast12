@@ -114,14 +114,14 @@
             
             .mobile-back-btn {
                 display: block; position: absolute; top: 15px; left: 15px; z-index: 5;
-                background: rgba(0,0,0,0.2); border: none; border-radius: 50%;
-                width: 40px; height: 40px; color: white; font-size: 24px; cursor: pointer;
+                background: var(darkbutton); border: none; border-radius: 50%;
+                width: 40px; height: 40px; color: var(--selected); font-size: 24px; cursor: pointer;
             }
             .col-chat .mobile-back-btn { color: #333; }
 
             .mobile-editor-toggle {
                 display: grid; place-items: center; position: fixed; bottom: 20px; right: 20px;
-                width: 50px; height: 50px; background: #282a36; border: 1px solid #44475a;
+                width: 50px; height: 50px; background: #FFFFA2; border: 1px solid #FF6A6A;
                 border-radius: 50%; color: #f8f8f2; font-size: 24px; cursor: pointer;
                 z-index: 101; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             }
@@ -144,10 +144,10 @@
         <div class="preview-container">
             <aside class="col-chars"><button class="mobile-back-btn">←</button><div class="menu-icon"><span><font color=#ffffff>≡</font></span></div><div class="char-avatar active">?</div><div class="char-avatar">?</div><div class="char-avatar add-char">+</div></aside>
             <main class="col-menu"><div class="menu-tabs"><button class="active">챗</button><button><div  class="char-font-color">캐릭터</div></div></button><button class="new-chat-btn">새 채팅</button><div class="chat-list"><div class="chat-list-item active"><span>### 001 채팅방</span></div><div class="chat-list-item"><span>### 000 채팅방</span></div></div><div class="menu-settings"><div class="setting-item"><span>탈옥 토글</span><input type="checkbox"></div><div class="setting-item"><span>탈옥 강화</span><input type="checkbox"></div></div></main>
-            <section class="col-chat"><button class="mobile-back-btn">←</button><div class="message-list-static"><div class="message-static character"><div class="msg-bubble">채팅창을 꾸미고 싶다면,<br>달글 첫 댓글 천사 펠시의 집 이용하기</div></div><div class="message-static user"><div class="msg-bubble">&lt;System&gt; 이미 쓰러진 펠시입니다.</div></div></div><footer class="chat-input-area-themed"><input type="text" placeholder="{{user}}의 테마 기다리는 중..."><button><font color=#ABABAB>➤</font></button></footer></section>
+            <section class="col-chat"><button class="mobile-back-btn">←</button><br><div class="message-list-static"><div class="message-static character"><div class="msg-bubble">채팅창을 꾸미고 싶다면,<br>달글 첫 댓글 천사 펠시의 집 이용하기</div></div><div class="message-static user"><div class="msg-bubble">&lt;System&gt; 이미 쓰러진 펠시입니다.</div></div></div><footer class="chat-input-area-themed"><input type="text" placeholder="{{user}}의 테마 기다리는 중..."><button><font color=#ABABAB>➤</font></button></footer></section>
         </div>
     </div>
-    <button class="mobile-editor-toggle">⚙️</button>
+    <button class="mobile-editor-toggle">🎠</button>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
